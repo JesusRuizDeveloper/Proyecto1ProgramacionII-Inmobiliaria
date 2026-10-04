@@ -1,4 +1,4 @@
-package co.edu.uptc.inmobiliaria;
+package co.edu.uptc.inmobiliaria.Run;
 
 public class Main {
     public static void main(String[] args) {

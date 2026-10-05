@@ -1,4 +1,5 @@
 package co.edu.uptc.inmobiliaria.Model;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Inmobiliaria {
@@ -6,9 +7,53 @@ public class Inmobiliaria {
     private String nombre;
     private String telefono;
     private String direccion;
+    private List<Administrador> administradores;
     private List<Inmueble> inmuebles;
+    private List<Propietario> propietarios;
+    private List<Cliente> clientes;
+
     
+    
+    public Inmobiliaria(int id, String nombre, String telefono, String direccion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.administradores = new ArrayList<>();
+        this.inmuebles = new ArrayList<>();
+        this.propietarios = new ArrayList<>();
+        this.clientes = new ArrayList<>();
+    }
+
     public Inmobiliaria() {
+        /*this.administradores = new ArrayList<>();
+        this.inmuebles = new ArrayList<>();
+        this.propietarios = new ArrayList<>();
+        this.clientes = new ArrayList<>();*/
+    }
+
+    public List<Propietario> getPropietarios() {
+        return propietarios;
+    }
+
+    public void setPropietarios(List<Propietario> propietarios) {
+        this.propietarios = propietarios;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public List<Administrador> getAdministradores() {
+        return administradores;
+    }
+
+    public void setAdministradores(List<Administrador> administradores) {
+        this.administradores = administradores;
     }
 
     public int getId() {
@@ -43,9 +88,16 @@ public class Inmobiliaria {
     }
 
     public String toString() {
-        return "Inmobiliaria [id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", direccion=" + direccion
-                + ", inmuebles=" + inmuebles + "]";
+        return "id = " + id + "\n" +
+            "nombre = " + nombre + "\n" +
+            "telefono = " + telefono + "\n" +
+            "direccion = " + direccion + "\n" +
+            "administradores = " + administradores + "\n" +
+            "inmuebles = " + inmuebles + "\n" +
+            "propietarios = " + propietarios + "\n" +
+            "clientes = " + clientes + "\n\n";
     }
-    
-    
+
+
+
 }

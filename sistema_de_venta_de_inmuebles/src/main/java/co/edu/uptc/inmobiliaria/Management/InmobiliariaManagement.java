@@ -6,7 +6,12 @@ import java.util.List;
 import co.edu.uptc.inmobiliaria.DAO.DaoJson.DaoInmobiliariaJson;
 import co.edu.uptc.inmobiliaria.DAO.DaoMysql.DaoInmobiliariaMysql;
 import co.edu.uptc.inmobiliaria.DTO.ResultadoAdministrador;
+import co.edu.uptc.inmobiliaria.DTO.ResultadoCliente;
 import co.edu.uptc.inmobiliaria.DTO.ResultadoInmobiliaria;
+import co.edu.uptc.inmobiliaria.DTO.ResultadoInmueble;
+import co.edu.uptc.inmobiliaria.DTO.ResultadoPropietario;
+import co.edu.uptc.inmobiliaria.Enums.TipoContrato;
+import co.edu.uptc.inmobiliaria.Enums.TipoDeInmueble;
 import co.edu.uptc.inmobiliaria.Model.Administrador;
 import co.edu.uptc.inmobiliaria.Model.Cliente;
 import co.edu.uptc.inmobiliaria.Model.Inmobiliaria;
@@ -112,8 +117,8 @@ public class InmobiliariaManagement {
 
 
     ////<------Metodos para la agregacion de entidades------>
+    /// 
 
-    //Agregar un administrador
     public boolean agregarAdministrador(int idInmo, int idAdmin, String nombre, String telefono, String clave){
         inmobiliarias = daoJson.leerArchivo();
         ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
@@ -136,143 +141,243 @@ public class InmobiliariaManagement {
         return false;
     }
 
-    public boolean agregarPropietario() {
-        return false;
+    public boolean agregarPropietario(int idInmo, int id, String nombre, String telefono, String clave) {
+            inmobiliarias = daoJson.leerArchivo();
+            ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+
+            if(resulInmoDTO.getExisteInmobiliaria()){
+                ResultadoPropietario resulPropietarioDTO = buscarPropietario(idInmo, id);
+
+                if(!resulPropietarioDTO.getExistePropietario()){
+                    Propietario propietario = new Propietario(id, nombre, telefono, clave); 
+                    List<Propietario> propietarios = resulInmoDTO.getInmobiliaria().getPropietarios(); 
+                    propietarios.add(propietario);
+
+                    resulInmoDTO.getInmobiliaria().setPropietarios(propietarios);
+                    daoJson.escribirArchivo(inmobiliarias);
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
     }
 
-    public boolean agregarCliente() {
-        return false;
+    public boolean agregarCliente(int idInmo, int id, String nombre, String telefono) {
+            inmobiliarias = daoJson.leerArchivo();
+            ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+
+            if(resulInmoDTO.getExisteInmobiliaria()){
+                ResultadoCliente resulClienteDTO = buscarCliente(idInmo, id);
+
+                if(!resulClienteDTO.getExisteCliente()){
+                    Cliente cliente = new Cliente(id, nombre, telefono); 
+                    List<Cliente> clientes = resulInmoDTO.getInmobiliaria().getClientes(); 
+                    clientes.add(cliente);
+
+                    resulInmoDTO.getInmobiliaria().setClientes(clientes);
+                    daoJson.escribirArchivo(inmobiliarias);
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
     }
 
-    public boolean agregarInmueble() {
-        return false;
+    public boolean agregarInmueble(int idInmo, int id, String ubicacion, String direccion, double precio, TipoContrato tipoContrato,
+            TipoDeInmueble tipoDeInmueble, boolean estaDisponible) {
+            inmobiliarias = daoJson.leerArchivo();
+            ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+
+            if(resulInmoDTO.getExisteInmobiliaria()){
+                ResultadoInmueble resulInmuebleDTO = buscarInmueble(idInmo, id);
+
+                if(!resulInmuebleDTO.getExisteInmueble()){
+                    Inmueble inmueble = new Inmueble(id, ubicacion, direccion, precio, tipoContrato, tipoDeInmueble, estaDisponible); 
+                    List<Inmueble> inmuebles = resulInmoDTO.getInmobiliaria().getInmuebles(); 
+                    inmuebles.add(inmueble);
+
+                    resulInmoDTO.getInmobiliaria().setInmuebles(inmuebles);
+                    daoJson.escribirArchivo(inmobiliarias);
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
     }
 
+        
+    
     ////Metodos funcionales (Logica de los entidades)
 
-//<-----Logica de administrador----->
+    //<-----Logica de administrador----->
 
-public boolean actualizarAdministrador() {
-    return false;
-}
+    //Agregar un administrador
 
-public boolean eliminarAdministrador() {
-    return false;
-}
+    public boolean actualizarAdministrador() {
+        return false;
+    }
 
-public ResultadoAdministrador buscarAdministrador(int idInmobiliaria, int idAdmin) {
-        ResultadoAdministrador resulAdminDTO = new ResultadoAdministrador();
+    public boolean eliminarAdministrador() {
+        return false;
+    }
+
+    public ResultadoAdministrador buscarAdministrador(int idInmobiliaria, int idAdmin) {
+            ResultadoAdministrador resulAdminDTO = new ResultadoAdministrador();
+            ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+            Inmobiliaria inmo = inmoDTO.getInmobiliaria();
+
+            if(inmoDTO.getExisteInmobiliaria()){
+                resulAdminDTO.setAdministrador(inmo.getAdministradores().stream().filter(admin -> admin.getId() == idAdmin).findFirst().orElse(null));
+                resulAdminDTO.setExisteAdministrador(resulAdminDTO.getAdministrador() != null);
+                return resulAdminDTO;
+            }
+            resulAdminDTO.setAdministrador(null);
+            resulAdminDTO.setExisteAdministrador(false);
+            return resulAdminDTO;
+    }
+
+    public List<Administrador> listarAdministradores() {
+        return null;
+    }
+
+
+
+    //<-----Logica de propietario----->
+
+    public boolean actualizarPropietario() {
+        return false;
+    }
+
+    public boolean eliminarPropietario() {
+        return false;
+    }
+
+    public ResultadoPropietario buscarPropietario(int idInmobiliaria, int idPropietario) {
+            ResultadoPropietario resulPropietarioDTO = new ResultadoPropietario();
+            ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+            Inmobiliaria inmo = inmoDTO.getInmobiliaria();
+
+            if(inmoDTO.getExisteInmobiliaria()){
+                resulPropietarioDTO.setPropietario(inmo.getPropietarios().stream().filter(prop -> prop.getId() == idPropietario).findFirst().orElse(null));
+                resulPropietarioDTO.setExistePropietario(resulPropietarioDTO.getPropietario() != null);
+                return resulPropietarioDTO;
+            }
+            resulPropietarioDTO.setPropietario(null);
+            resulPropietarioDTO.setExistePropietario(false);
+            return resulPropietarioDTO;
+    }
+
+    public List<Propietario> listarPropietarios() {
+        return null;
+    }
+
+    public boolean agregarInmuebleAPropietario() {
+        return false;
+    }
+
+    public boolean eliminarInmuebleDePropietario() {
+        return false;
+    }
+
+    public List<Inmueble> listarInmueblesPorPropietario() {
+        return null;
+    }
+
+
+
+    //<-----Logica de cliente----->
+
+
+
+    public boolean actualizarCliente() {
+        return false;
+    }
+
+    public boolean eliminarCliente() {
+        return false;
+    }
+
+    public ResultadoCliente buscarCliente(int idInmobiliaria, int idCliente) {
+        ResultadoCliente resulClienteDTO = new ResultadoCliente();
         ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
         Inmobiliaria inmo = inmoDTO.getInmobiliaria();
 
         if(inmoDTO.getExisteInmobiliaria()){
-            resulAdminDTO.setAdministrador(inmo.getAdministradores().stream().filter(admin -> admin.getId() == idAdmin).findFirst().orElse(null));
-            resulAdminDTO.setExisteAdministrador(resulAdminDTO.getAdministrador() != null);
-            return resulAdminDTO;
+            resulClienteDTO.setCliente(inmo.getClientes().stream().filter(cli -> cli.getId() == idCliente).findFirst().orElse(null));
+            resulClienteDTO.setExisteCliente(
+            resulClienteDTO.getCliente() != null);
+
+            return resulClienteDTO;
         }
-        resulAdminDTO.setAdministrador(null);
-        resulAdminDTO.setExisteAdministrador(false);
-        return resulAdminDTO;
-}
 
-public List<Administrador> listarAdministradores() {
-    return null;
-}
+        resulClienteDTO.setCliente(null);
+        resulClienteDTO.setExisteCliente(false);
+
+        return resulClienteDTO;
+    }
 
 
-
-//<-----Logica de propietario----->
-
-public boolean actualizarPropietario() {
-    return false;
-}
-
-public boolean eliminarPropietario() {
-    return false;
-}
-
-public Propietario buscarPropietario() {
-    return null;
-}
-
-public List<Propietario> listarPropietarios() {
-    return null;
-}
-
-public boolean agregarInmuebleAPropietario() {
-    return false;
-}
-
-public boolean eliminarInmuebleDePropietario() {
-    return false;
-}
-
-public List<Inmueble> listarInmueblesPorPropietario() {
-    return null;
-}
+    public List<Cliente> listarClientes() {
+        return null;
+    }
 
 
 
-//<-----Logica de cliente----->
+    //<-----Logica de inmueble----->
 
 
 
-public boolean actualizarCliente() {
-    return false;
-}
+    public boolean actualizarInmueble() {
+        return false;
+    }
 
-public boolean eliminarCliente() {
-    return false;
-}
+    public boolean eliminarInmueble() {
+        return false;
+    }
 
-public Cliente buscarCliente() {
-    return null;
-}
+    public ResultadoInmueble buscarInmueble(int idInmobiliaria, int idInmueble) {
+            ResultadoInmueble resulInmuebleDTO = new ResultadoInmueble();
+            ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+            Inmobiliaria inmo = inmoDTO.getInmobiliaria();
 
-public List<Cliente> listarClientes() {
-    return null;
-}
+            if(inmoDTO.getExisteInmobiliaria()){
+                resulInmuebleDTO.setInmueble(inmo.getInmuebles().stream().filter(inm -> inm.getId() == idInmueble).findFirst().orElse(null));
+                resulInmuebleDTO.setExisteInmueble(resulInmuebleDTO.getInmueble() != null);
+                return resulInmuebleDTO;
+            }
+            resulInmuebleDTO.setInmueble(null);
+            resulInmuebleDTO.setExisteInmueble(false);
+            return resulInmuebleDTO;
+    }
 
+    public List<Inmueble> listarInmuebles() {
+        return null;
+    }
 
+    public List<Inmueble> listarInmueblesDisponibles() {
+        return null;
+    }
 
-//<-----Logica de inmueble----->
+    public List<Inmueble> buscarPorUbicacion() {
+        return null;
+    }
 
+    public List<Inmueble> buscarPorPrecio() {
+        return null;
+    }
 
+    public List<Inmueble> buscarPorTipo() {
+        return null;
+    }
 
-public boolean actualizarInmueble() {
-    return false;
-}
+    public List<Inmueble> buscarPorContrato() {
+        return null;
+    }
 
-public boolean eliminarInmueble() {
-    return false;
-}
-
-public Inmueble buscarInmueble() {
-    return null;
-}
-
-public List<Inmueble> listarInmuebles() {
-    return null;
-}
-
-public List<Inmueble> listarInmueblesDisponibles() {
-    return null;
-}
-
-public List<Inmueble> buscarPorUbicacion() {
-    return null;
-}
-
-public List<Inmueble> buscarPorPrecio() {
-    return null;
-}
-
-public List<Inmueble> buscarPorTipo() {
-    return null;
-}
-
-public List<Inmueble> buscarPorContrato() {
-    return null;
-}
-
-}
+    }

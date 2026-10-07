@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Validaciones validaciones = new Validaciones();
             InmobiliariaManagement inmo = new InmobiliariaManagement();
-            //inmo.crearInmobiliaria(1, "Primera", "3126549865", "Centro");
+            inmo.crearInmobiliaria(1, "Primera", "3126549865", "Centro");
             //inmo.crearInmobiliaria(2, "Primera", "3126549865", "Centro");
             //inmo.crearInmobiliaria(3, "Primera", "3126549865", "Centro");
             //inmo.crearInmobiliaria(0, "Primera", "3126549865", "Centro");
@@ -23,5 +23,6 @@ public class Main {
             inmo.agregarAdministrador(1, 0, "Jesus", "3226548765", "1234");
             inmo.agregarAdministrador(1, 2, "Manuel", "111111111", "5678");
             inmo.agregarAdministrador(1, 3, "Carlos", "222222222", "9012");
+            inmo.agregarCliente(1, 2, "Juan", "12433214");
     }
 }

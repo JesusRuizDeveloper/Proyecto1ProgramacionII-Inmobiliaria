@@ -13,6 +13,17 @@ public class Inmueble implements General{
     private TipoDeInmueble tipoDeInmueble;
     private boolean estaDisponible;
     
+    public Inmueble(int id, String ubicacion, String direccion, double precio, TipoContrato tipoContrato,
+            TipoDeInmueble tipoDeInmueble, boolean estaDisponible) {
+        this.id = id;
+        this.ubicacion = ubicacion;
+        this.direccion = direccion;
+        this.precio = precio;
+        this.tipoContrato = tipoContrato;
+        this.tipoDeInmueble = tipoDeInmueble;
+        this.estaDisponible = estaDisponible;
+    }
+
     public Inmueble() {
     }
 

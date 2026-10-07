@@ -14,8 +14,6 @@ public class Inmobiliaria implements General{
     private List<Propietario> propietarios;
     private List<Cliente> clientes;
 
-    
-    
     public Inmobiliaria(int id, String nombre, String telefono, String direccion) {
         this.id = id;
         this.nombre = nombre;
@@ -44,6 +42,11 @@ public class Inmobiliaria implements General{
 
     public List<Cliente> getClientes() {
         return clientes;
+    }
+
+        
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
 
     public void setPersona(List<Cliente> clientes) {

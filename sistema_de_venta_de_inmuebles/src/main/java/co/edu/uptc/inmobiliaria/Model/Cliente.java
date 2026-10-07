@@ -1,6 +1,8 @@
 package co.edu.uptc.inmobiliaria.Model;
 
-public class Cliente {
+import co.edu.uptc.inmobiliaria.Interfaces.General;
+
+public class Cliente implements General{
     private int id;
     private String nombre;
     private String telefono;

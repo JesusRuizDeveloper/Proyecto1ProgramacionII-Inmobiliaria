@@ -5,10 +5,12 @@ import java.util.List;
 
 import co.edu.uptc.inmobiliaria.DAO.DaoJson.DaoInmobiliariaJson;
 import co.edu.uptc.inmobiliaria.DAO.DaoMysql.DaoInmobiliariaMysql;
+import co.edu.uptc.inmobiliaria.Interfaces.General;
 import co.edu.uptc.inmobiliaria.Model.Inmobiliaria;
 import co.edu.uptc.inmobiliaria.Util.Validaciones;
 
 public class InmobialiariaManagement {
+
     //Instancias de clases DAO
     DaoInmobiliariaJson daoJson = new DaoInmobiliariaJson();
     DaoInmobiliariaMysql daoMysql = new DaoInmobiliariaMysql();
@@ -16,12 +18,6 @@ public class InmobialiariaManagement {
 
     //Creacion de listas
     List<Inmobiliaria> inmobiliarias = new ArrayList<>();
-
-    /*    
-    private int id;
-    private String nombre;
-    private String telefono;
-    private String direccion;*/
 
     //Crear inmobiliaria
     public boolean crearInmobiliaria(int id, String nombre, String telefono, String direccion){
@@ -52,7 +48,9 @@ public class InmobialiariaManagement {
         return inmobiliarias;
     }
 
-    //Actualizar inmobiliarias
+    // <----Actualizar inmobiliarias---->
+
+    //Modificar nombre
     public boolean modificarNombrePorId(int id, String nombreNuevo){
         inmobiliarias = daoJson.leerArchivo();
         if(validaciones.existeIdInmobiliariaPorId(inmobiliarias, id)){
@@ -62,7 +60,8 @@ public class InmobialiariaManagement {
             }
             return false;
         }
-
+    
+    //Modificar telefono
     public boolean modificarTelefonoPorId(int id, String telefono){
         inmobiliarias = daoJson.leerArchivo();
         if(validaciones.existeIdInmobiliariaPorId(inmobiliarias, id)){
@@ -73,6 +72,7 @@ public class InmobialiariaManagement {
             return false;
         }
 
+    //Modificar direccion
     public boolean modificarDireccionPorId(int id, String direccion){
         inmobiliarias = daoJson.leerArchivo();
         if(validaciones.existeIdInmobiliariaPorId(inmobiliarias, id)){
@@ -82,7 +82,6 @@ public class InmobialiariaManagement {
             }
             return false;
         }
-    
 }
 
 

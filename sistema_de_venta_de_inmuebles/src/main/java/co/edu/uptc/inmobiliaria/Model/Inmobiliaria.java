@@ -2,7 +2,9 @@ package co.edu.uptc.inmobiliaria.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inmobiliaria {
+import co.edu.uptc.inmobiliaria.Interfaces.General;
+
+public class Inmobiliaria implements General{
     private int id;
     private String nombre;
     private String telefono;

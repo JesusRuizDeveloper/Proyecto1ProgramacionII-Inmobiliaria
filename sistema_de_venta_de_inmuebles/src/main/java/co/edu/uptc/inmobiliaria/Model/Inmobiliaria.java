@@ -28,10 +28,10 @@ public class Inmobiliaria implements General{
     }
 
     public Inmobiliaria() {
-        /*this.administradores = new ArrayList<>();
+        this.administradores = new ArrayList<>();
         this.inmuebles = new ArrayList<>();
         this.propietarios = new ArrayList<>();
-        this.personas = new ArrayList<>();*/
+        this.personas = new ArrayList<>();
     }
 
     public List<Propietario> getPropietarios() {

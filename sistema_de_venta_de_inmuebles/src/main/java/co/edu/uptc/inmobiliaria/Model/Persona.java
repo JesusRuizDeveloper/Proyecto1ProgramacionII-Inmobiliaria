@@ -9,6 +9,17 @@ public class Persona implements General{
     private String telefono;
     private Rol rol;
     
+    public Persona(int id, String nombre, String telefono, Rol rol) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.rol = rol;
+    }
+
+    public Persona(Rol rol) {
+        this.rol = rol;
+    }
+
     public Persona() {
     }
 

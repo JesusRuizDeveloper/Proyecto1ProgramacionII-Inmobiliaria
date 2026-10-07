@@ -1,24 +1,31 @@
 package co.edu.uptc.inmobiliaria.Model;
-import co.edu.uptc.inmobiliaria.Interfaces.General;
+
+import co.edu.uptc.inmobiliaria.Enums.Rol;
 
 public class Administrador extends Persona{
     
-    private String contraseña;
+    private String clave;
 
-    public Administrador() {
+    public Administrador(int id, String nombre, String telefono, String clave) {
+        super(id, nombre, telefono, Rol.ADMINISTRADOR);
+        this.clave = clave;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public Administrador(){
+        super(Rol.ADMINISTRADOR);
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     @Override
     public String toString() {
-        return "Administrador [contraseña=" + contraseña + "]";
+        return "Administrador [contraseña=" + clave + "]";
     }
     
 }

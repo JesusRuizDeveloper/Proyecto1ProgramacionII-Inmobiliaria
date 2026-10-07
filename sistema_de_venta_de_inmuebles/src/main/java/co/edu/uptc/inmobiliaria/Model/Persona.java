@@ -1,13 +1,15 @@
 package co.edu.uptc.inmobiliaria.Model;
 
+import co.edu.uptc.inmobiliaria.Enums.Rol;
 import co.edu.uptc.inmobiliaria.Interfaces.General;
 
-public class Cliente implements General{
+public class Persona implements General{
     private int id;
     private String nombre;
     private String telefono;
+    private Rol rol;
     
-    public Cliente() {
+    public Persona() {
     }
 
     public int getId() {
@@ -34,12 +36,18 @@ public class Cliente implements General{
         this.telefono = telefono;
     }
 
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    @Override
     public String toString() {
-        return "Cliente [id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + "]";
+        return "Persona [id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + ", rol=" + rol + "]";
     }
 
     
-
-    
-
 }

@@ -1,0 +1,39 @@
+Lo que tenemos:
+
+1. Los modelos declarados
+2. La logica de inmobiliaria
+3. Tenemos el dao del json
+
+Falta:
+
+1. Management del resto de clases
+2. Implementar mysql
+3. Interfaz gráfica (GUI)
+    -Tablas 
+    -Botones
+4. Config
+4. Implementar DTO (Mostrar informacion general y estadísticas de la informacion que conlleva la inmobiliaria)
+5. Documentación 
+6. Test (Esperando confirmacion)
+7. UML
+
+María
+- GUI
+    - Menú
+    - Ingreso
+    - Pantalla de carga
+
+Jesus
+- Test
+- Implementar DTO
+- Management
+
+David
+- dao (Conexiones a DB)
+- Hacer base de datos
+- Config
+- Query constans (Dentro de Util)
+
+TODOS (ULTIMO)
+- UML
+- Documentacion

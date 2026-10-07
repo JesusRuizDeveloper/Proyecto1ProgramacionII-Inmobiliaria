@@ -2,8 +2,9 @@ package co.edu.uptc.inmobiliaria.Model;
 
 import co.edu.uptc.inmobiliaria.Enums.TipoContrato;
 import co.edu.uptc.inmobiliaria.Enums.TipoDeInmueble;
+import co.edu.uptc.inmobiliaria.Interfaces.General;
 
-public class Inmueble {
+public class Inmueble implements General{
     private int id;
     private String ubicacion;
     private String direccion;

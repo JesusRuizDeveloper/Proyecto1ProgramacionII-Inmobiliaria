@@ -16,6 +16,17 @@ public class Validaciones {
         return false;
     }
 
+
+
+
+
+
+
+
+
+
+    
+
     public <T extends General> boolean existeIdInmobiliariaPorIdGenerico(T t){
         return false;
     }

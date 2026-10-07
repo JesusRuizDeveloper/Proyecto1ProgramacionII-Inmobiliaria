@@ -1,14 +1,13 @@
 package co.edu.uptc.inmobiliaria.Run;
 
 import co.edu.uptc.inmobiliaria.Management.InmobialiariaManagement;
-import co.edu.uptc.inmobiliaria.Model.Cliente;
 import co.edu.uptc.inmobiliaria.Util.Validaciones;
 
 public class Main {
     public static void main(String[] args) {
         Validaciones validaciones = new Validaciones();
             InmobialiariaManagement inmo = new InmobialiariaManagement();
-            inmo.crearInmobiliaria(1, "Primera", "3126549865", "Centro");
+            //inmo.crearInmobiliaria(1, "Primera", "3126549865", "Centro");
             //inmo.crearInmobiliaria(2, "Primera", "3126549865", "Centro");
             //inmo.crearInmobiliaria(3, "Primera", "3126549865", "Centro");
             //inmo.crearInmobiliaria(0, "Primera", "3126549865", "Centro");

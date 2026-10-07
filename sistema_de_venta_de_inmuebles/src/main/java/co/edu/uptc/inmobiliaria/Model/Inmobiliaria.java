@@ -9,10 +9,12 @@ public class Inmobiliaria implements General{
     private String nombre;
     private String telefono;
     private String direccion;
+
+    
     private List<Administrador> administradores;
     private List<Inmueble> inmuebles;
     private List<Propietario> propietarios;
-    private List<Cliente> clientes;
+    //private List<Persona> clientes;
 
     
     
@@ -24,7 +26,7 @@ public class Inmobiliaria implements General{
         this.administradores = new ArrayList<>();
         this.inmuebles = new ArrayList<>();
         this.propietarios = new ArrayList<>();
-        this.clientes = new ArrayList<>();
+        //this.clientes = new ArrayList<>();
     }
 
     public Inmobiliaria() {
@@ -42,12 +44,12 @@ public class Inmobiliaria implements General{
         this.propietarios = propietarios;
     }
 
-    public List<Cliente> getClientes() {
-        return clientes;
-    }
+    //public List<Persona> getClientes() {
+        //return clientes;
+    //}
 
-    public void setClientes(List<Cliente> clientes) {
-        this.clientes = clientes;
+    public void setClientes(List<Persona> clientes) {
+        //this.clientes = clientes;
     }
 
     public List<Administrador> getAdministradores() {
@@ -97,7 +99,7 @@ public class Inmobiliaria implements General{
             "administradores = " + administradores + "\n" +
             "inmuebles = " + inmuebles + "\n" +
             "propietarios = " + propietarios + "\n" +
-            "clientes = " + clientes + "\n\n";
+            "clientes = "  + "\n\n";
     }
 
 

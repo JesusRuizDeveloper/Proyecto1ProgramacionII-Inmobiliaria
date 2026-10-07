@@ -1,27 +1,11 @@
 package co.edu.uptc.inmobiliaria.Model;
+import co.edu.uptc.inmobiliaria.Interfaces.General;
 
-public class Administrador {
-    private int id;
-    private String nombre;
-    private String contraseña;
+public class Administrador extends Persona{
     
+    private String contraseña;
+
     public Administrador() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getContraseña() {
@@ -32,10 +16,9 @@ public class Administrador {
         this.contraseña = contraseña;
     }
 
+    @Override
     public String toString() {
-        return "Administrador [id=" + id + ", nombre=" + nombre + ", contraseña=" + contraseña + "]";
+        return "Administrador [contraseña=" + contraseña + "]";
     }
-
     
-
 }

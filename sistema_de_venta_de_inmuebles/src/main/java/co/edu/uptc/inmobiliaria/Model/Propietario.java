@@ -1,41 +1,26 @@
 package co.edu.uptc.inmobiliaria.Model;
 
-public class Propietario {
-    private int id;
-    private String nombre;
-    private String telefono;
-    
+import java.util.List;
+
+public class Propietario extends Persona{
+    private List<Inmueble> inmuebles; 
+
     public Propietario() {
     }
 
-    public int getId() {
-        return id;
+    public List<Inmueble> getInmuebles() {
+        return inmuebles;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setInmuebles(List<Inmueble> inmuebles) {
+        this.inmuebles = inmuebles;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
+    @Override
     public String toString() {
-        return "Propietario [id=" + id + ", nombre=" + nombre + ", telefono=" + telefono + "]";
-    }
+        return "Propietario [inmuebles=" + inmuebles + "]";
+    }    
 
     
-
+    
 }

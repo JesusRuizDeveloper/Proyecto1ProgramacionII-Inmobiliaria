@@ -5,6 +5,7 @@ import java.util.List;
 
 import co.edu.uptc.inmobiliaria.DAO.DaoJson.DaoInmobiliariaJson;
 import co.edu.uptc.inmobiliaria.DAO.DaoMysql.DaoInmobiliariaMysql;
+import co.edu.uptc.inmobiliaria.DTO.ResultadoAdministrador;
 import co.edu.uptc.inmobiliaria.DTO.ResultadoInmobiliaria;
 import co.edu.uptc.inmobiliaria.Model.Administrador;
 import co.edu.uptc.inmobiliaria.Model.Cliente;
@@ -13,7 +14,7 @@ import co.edu.uptc.inmobiliaria.Model.Inmueble;
 import co.edu.uptc.inmobiliaria.Model.Propietario;
 import co.edu.uptc.inmobiliaria.Util.Validaciones;
 
-public class InmobialiariaManagement {
+public class InmobiliariaManagement {
 
     //Instancias de clases DAO
     DaoInmobiliariaJson daoJson = new DaoInmobiliariaJson();
@@ -110,17 +111,46 @@ public class InmobialiariaManagement {
 
 
 
-    ////<------Metodos para la agregacion de personas------>
+    ////<------Metodos para la agregacion de entidades------>
 
-    public boolean agregarAdministrador(int id, String nombre, String telefono, String clave){
+    //Agregar un administrador
+    public boolean agregarAdministrador(int idInmo, int idAdmin, String nombre, String telefono, String clave){
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+        ResultadoAdministrador resulAdminDTO = buscarAdministrador(idInmo, idAdmin);
+        Administrador admin = new Administrador(idAdmin, nombre, telefono, clave); 
+        List<Administrador> admins = resulInmoDTO.getInmobiliaria().getAdministradores(); 
+        admins.add(admin);
+
+        if(resulInmoDTO.getExisteInmobiliaria()){
+            if(!resulAdminDTO.getExisteAdministrador()){
+                resulInmoDTO.getInmobiliaria().setAdministradores(admins);
+                daoJson.escribirArchivo(inmobiliarias);
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+        
         return false;
     }
 
-//<-----Logica de administrador----->
+    public boolean agregarPropietario() {
+        return false;
+    }
 
-public boolean agregarAdministrador() {
-    return false;
-}
+    public boolean agregarCliente() {
+        return false;
+    }
+
+    public boolean agregarInmueble() {
+        return false;
+    }
+
+    ////Metodos funcionales (Logica de los entidades)
+
+//<-----Logica de administrador----->
 
 public boolean actualizarAdministrador() {
     return false;
@@ -130,8 +160,19 @@ public boolean eliminarAdministrador() {
     return false;
 }
 
-public Administrador buscarAdministrador() {
-    return null;
+public ResultadoAdministrador buscarAdministrador(int idInmobiliaria, int idAdmin) {
+        ResultadoAdministrador resulAdminDTO = new ResultadoAdministrador();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+        Inmobiliaria inmo = inmoDTO.getInmobiliaria();
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            resulAdminDTO.setAdministrador(inmo.getAdministradores().stream().filter(admin -> admin.getId() == idAdmin).findFirst().orElse(null));
+            resulAdminDTO.setExisteAdministrador(resulAdminDTO.getAdministrador() != null);
+            return resulAdminDTO;
+        }
+        resulAdminDTO.setAdministrador(null);
+        resulAdminDTO.setExisteAdministrador(false);
+        return resulAdminDTO;
 }
 
 public List<Administrador> listarAdministradores() {
@@ -141,10 +182,6 @@ public List<Administrador> listarAdministradores() {
 
 
 //<-----Logica de propietario----->
-
-public boolean agregarPropietario() {
-    return false;
-}
 
 public boolean actualizarPropietario() {
     return false;
@@ -178,9 +215,7 @@ public List<Inmueble> listarInmueblesPorPropietario() {
 
 //<-----Logica de cliente----->
 
-public boolean agregarCliente() {
-    return false;
-}
+
 
 public boolean actualizarCliente() {
     return false;
@@ -202,9 +237,7 @@ public List<Cliente> listarClientes() {
 
 //<-----Logica de inmueble----->
 
-public boolean agregarInmueble() {
-    return false;
-}
+
 
 public boolean actualizarInmueble() {
     return false;

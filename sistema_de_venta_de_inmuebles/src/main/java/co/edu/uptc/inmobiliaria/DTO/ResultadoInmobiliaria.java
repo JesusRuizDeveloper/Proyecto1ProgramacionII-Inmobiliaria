@@ -22,7 +22,7 @@ public class ResultadoInmobiliaria {
         this.inmobiliaria = inmobiliaria;
     }
 
-    public boolean isExisteInmobiliaria() {
+    public boolean getExisteInmobiliaria() {
         return existeInmobiliaria;
     }
 

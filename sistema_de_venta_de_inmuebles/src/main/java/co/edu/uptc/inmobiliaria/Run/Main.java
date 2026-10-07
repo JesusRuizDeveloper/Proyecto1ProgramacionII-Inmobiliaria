@@ -1,11 +1,13 @@
 package co.edu.uptc.inmobiliaria.Run;
 
+import co.edu.uptc.inmobiliaria.Management.ClienteManagement;
 import co.edu.uptc.inmobiliaria.Management.InmobiliariaManagement;
 import co.edu.uptc.inmobiliaria.Util.Validaciones;
 
 public class Main {
     public static void main(String[] args) {
         Validaciones validaciones = new Validaciones();
+            ClienteManagement clienteManagement = new ClienteManagement();
             InmobiliariaManagement inmo = new InmobiliariaManagement();
             inmo.crearInmobiliaria(1, "Primera", "3126549865", "Centro");
             //inmo.crearInmobiliaria(2, "Primera", "3126549865", "Centro");
@@ -24,5 +26,7 @@ public class Main {
             inmo.agregarAdministrador(1, 2, "Manuel", "111111111", "5678");
             inmo.agregarAdministrador(1, 3, "Carlos", "222222222", "9012");
             inmo.agregarCliente(1, 2, "Juan", "12433214");
+            inmo.cambiarNombreCliente(1, 2, "Pepito");
+            inmo.cambiarNombreAdministrador(1, 0, "Pedrangas");
     }
 }

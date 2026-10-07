@@ -133,14 +133,13 @@ public class InmobiliariaManagement {
             if(!resulAdminDTO.getExisteAdministrador()){
                 resulInmoDTO.getInmobiliaria().setAdministradores(admins);
                 daoJson.escribirArchivo(inmobiliarias);
+                return true;
             }else{
                 return false;
             }
         }else{
             return false;
         }
-        
-        return false;
     }
 
     public boolean agregarPropietario(int idInmo, int id, String nombre, String telefono, String clave) {
@@ -257,12 +256,24 @@ public class InmobiliariaManagement {
 
     //Agregar un administrador
 
-    public boolean actualizarAdministrador() {
-        return false;
-    }
 
-    public boolean eliminarAdministrador() {
-        return false;
+    public boolean eliminarAdministrador(int idInmo, int id) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+        ResultadoAdministrador resulAdminDTO = buscarAdministrador(idInmo, id);
+
+        if(resulInmoDTO.getExisteInmobiliaria()){
+            if (resulAdminDTO.getExisteAdministrador()) {
+                resulInmoDTO.getInmobiliaria().getAdministradores().removeIf(admin -> admin.getId() == id);
+                validaciones.cargarDatos(inmobiliarias);
+
+                return true;
+            }else {
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
     public ResultadoAdministrador buscarAdministrador(int idInmobiliaria, int idAdmin) {
@@ -280,8 +291,15 @@ public class InmobiliariaManagement {
             return resulAdminDTO;
     }
 
-    public List<Administrador> listarAdministradores() {
-        return null;
+    public List<Administrador> listarAdministradores(int idInmobiliaria) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            return inmoDTO.getInmobiliaria().getAdministradores();
+        }
+
+        return new ArrayList<>();
     }
 
 
@@ -324,12 +342,23 @@ public class InmobiliariaManagement {
             return false;
     }
 
-    public boolean actualizarPropietario() {
-        return false;
-    }
+    public boolean eliminarPropietario(int idInmo, int id) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+        ResultadoPropietario resulPropietarioDTO = buscarPropietario(idInmo, id);
 
-    public boolean eliminarPropietario() {
-        return false;
+        if(resulInmoDTO.getExisteInmobiliaria()){
+            if (resulPropietarioDTO.getExistePropietario()) {
+                resulInmoDTO.getInmobiliaria().getPropietarios().removeIf(prop -> prop.getId() == id);
+                validaciones.cargarDatos(inmobiliarias);
+
+                return true;
+            }else {
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
     public ResultadoPropietario buscarPropietario(int idInmobiliaria, int idPropietario) {
@@ -347,20 +376,84 @@ public class InmobiliariaManagement {
             return resulPropietarioDTO;
     }
 
-    public List<Propietario> listarPropietarios() {
-        return null;
+    public List<Propietario> listarPropietarios(int idInmobiliaria) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            return inmoDTO.getInmobiliaria().getPropietarios();
+        }
+
+        return new ArrayList<>();
     }
 
-    public boolean agregarInmuebleAPropietario() {
-        return false;
+    public boolean agregarInmuebleAPropietario(int idInmo, int idPropietario, int idInmueble) {
+        inmobiliarias = daoJson.leerArchivo();
+
+        ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+        ResultadoPropietario resulPropietarioDTO = buscarPropietario(idInmo, idPropietario);
+        ResultadoInmueble resulInmuebleDTO = buscarInmueble(idInmo, idInmueble);
+
+        if(resulInmoDTO.getExisteInmobiliaria()){
+            if(resulPropietarioDTO.getExistePropietario()){
+                if(resulInmuebleDTO.getExisteInmueble()){
+
+                    List<Inmueble> inmuebles = resulPropietarioDTO.getPropietario().getInmuebles();
+
+                    if(!inmuebles.stream().anyMatch(inm -> inm.getId() == idInmueble)){
+                        inmuebles.add(resulInmuebleDTO.getInmueble());
+
+                        resulPropietarioDTO.getPropietario().setInmuebles(inmuebles);
+
+                        validaciones.cargarDatos(inmobiliarias);
+
+                        return true;
+                    }else{
+                        return false;
+                    }
+
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
-    public boolean eliminarInmuebleDePropietario() {
-        return false;
+    public boolean eliminarInmuebleDePropietario(int idInmo, int idPropietario, int idInmueble) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+        ResultadoPropietario resulPropietarioDTO = buscarPropietario(idInmo, idPropietario);
+
+        if(resulInmoDTO.getExisteInmobiliaria()){
+            if (resulPropietarioDTO.getExistePropietario()) {
+                resulPropietarioDTO.getPropietario().getInmuebles().removeIf(inm -> inm.getId() == idInmueble);
+                validaciones.cargarDatos(inmobiliarias);
+
+                return true;
+            }else {
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
-    public List<Inmueble> listarInmueblesPorPropietario() {
-        return null;
+    public List<Inmueble> listarInmueblesPorPropietario(int idInmobiliaria, int idPropietario) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+        ResultadoPropietario propietarioDTO = buscarPropietario(idInmobiliaria, idPropietario);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            if(propietarioDTO.getExistePropietario()){
+                return propietarioDTO.getPropietario().getInmuebles();
+            }
+        }
+
+        return new ArrayList<>();
     }
 
 
@@ -391,12 +484,23 @@ public class InmobiliariaManagement {
             return false;
     }
 
-    public boolean actualizarCliente() {
-        return false;
-    }
+    public boolean eliminarCliente(int idInmo, int id) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+        ResultadoCliente resulClienteDTO = buscarCliente(idInmo, id);
 
-    public boolean eliminarCliente() {
-        return false;
+        if(resulInmoDTO.getExisteInmobiliaria()){
+            if (resulClienteDTO.getExisteCliente()) {
+                resulInmoDTO.getInmobiliaria().getClientes().removeIf(cli -> cli.getId() == id);
+                validaciones.cargarDatos(inmobiliarias);
+
+                return true;
+            }else {
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
     public ResultadoCliente buscarCliente(int idInmobiliaria, int idCliente) {
@@ -419,9 +523,16 @@ public class InmobiliariaManagement {
     }
 
 
-    public List<Cliente> listarClientes() {
-        return null;
+public List<Cliente> listarClientes(int idInmobiliaria) {
+    inmobiliarias = daoJson.leerArchivo();
+    ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+    if(inmoDTO.getExisteInmobiliaria()){
+        return inmoDTO.getInmobiliaria().getClientes();
     }
+
+    return new ArrayList<>();
+}
 
 
 
@@ -499,12 +610,23 @@ public class InmobiliariaManagement {
             return false;
     }
 
-    public boolean actualizarInmueble() {
-        return false;
-    }
+    public boolean eliminarInmueble(int idInmo, int id) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria resulInmoDTO = buscarInmobiliariaPorId(idInmo);
+        ResultadoInmueble resulInmuebleDTO = buscarInmueble(idInmo, id);
 
-    public boolean eliminarInmueble() {
-        return false;
+        if(resulInmoDTO.getExisteInmobiliaria()){
+            if (resulInmuebleDTO.getExisteInmueble()) {
+                resulInmoDTO.getInmobiliaria().getInmuebles().removeIf(inm -> inm.getId() == id);
+                validaciones.cargarDatos(inmobiliarias);
+
+                return true;
+            }else {
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 
     public ResultadoInmueble buscarInmueble(int idInmobiliaria, int idInmueble) {
@@ -522,28 +644,76 @@ public class InmobiliariaManagement {
             return resulInmuebleDTO;
     }
 
-    public List<Inmueble> listarInmuebles() {
-        return null;
+    public List<Inmueble> listarInmuebles(int idInmobiliaria) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            return inmoDTO.getInmobiliaria().getInmuebles();
+        }
+
+        return new ArrayList<>();
     }
 
-    public List<Inmueble> listarInmueblesDisponibles() {
-        return null;
+    public List<Inmueble> listarInmueblesDisponibles(int idInmobiliaria) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            return inmoDTO.getInmobiliaria().getInmuebles().stream().filter(inm -> inm.getEstaDisponible()).toList();
+        }
+
+        return new ArrayList<>();
     }
 
-    public List<Inmueble> buscarPorUbicacion() {
-        return null;
+    public List<Inmueble> buscarPorUbicacion(int idInmobiliaria, String ubicacion) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            return inmoDTO.getInmobiliaria().getInmuebles().stream().filter(inm -> inm.getUbicacion().equalsIgnoreCase(ubicacion)).toList();
+        }
+
+        return new ArrayList<>();
     }
 
-    public List<Inmueble> buscarPorPrecio() {
-        return null;
+    public List<Inmueble> buscarPorPrecio(int idInmobiliaria, double precioMinimo, double precioMaximo) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            return inmoDTO.getInmobiliaria().getInmuebles().stream()
+                    .filter(inm -> inm.getPrecio() >= precioMinimo && inm.getPrecio() <= precioMaximo)
+                    .toList();
+        }
+
+        return new ArrayList<>();
     }
 
-    public List<Inmueble> buscarPorTipo() {
-        return null;
+    public List<Inmueble> buscarPorTipo(int idInmobiliaria, TipoDeInmueble tipo) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            return inmoDTO.getInmobiliaria().getInmuebles().stream()
+                    .filter(inm -> inm.getTipoDeInmueble().equals(tipo))
+                    .toList();
+        }
+
+        return new ArrayList<>();
     }
 
-    public List<Inmueble> buscarPorContrato() {
-        return null;
+    public List<Inmueble> buscarPorContrato(int idInmobiliaria, TipoContrato contrato) {
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = buscarInmobiliariaPorId(idInmobiliaria);
+
+        if(inmoDTO.getExisteInmobiliaria()){
+            return inmoDTO.getInmobiliaria().getInmuebles().stream()
+                    .filter(inm -> inm.getTipoContrato().equals(contrato))
+                    .toList();
+        }
+
+        return new ArrayList<>();
     }
 
-    }
+}

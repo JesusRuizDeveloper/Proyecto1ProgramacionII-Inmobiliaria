@@ -75,7 +75,7 @@ public class Inmueble implements General{
         this.tipoDeInmueble = tipoDeInmueble;
     }
 
-    public boolean isEstaDisponible() {
+    public boolean getEstaDisponible() {
         return estaDisponible;
     }
 

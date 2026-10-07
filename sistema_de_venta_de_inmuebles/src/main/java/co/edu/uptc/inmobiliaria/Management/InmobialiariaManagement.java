@@ -5,7 +5,6 @@ import java.util.List;
 
 import co.edu.uptc.inmobiliaria.DAO.DaoJson.DaoInmobiliariaJson;
 import co.edu.uptc.inmobiliaria.DAO.DaoMysql.DaoInmobiliariaMysql;
-import co.edu.uptc.inmobiliaria.Interfaces.General;
 import co.edu.uptc.inmobiliaria.Model.Inmobiliaria;
 import co.edu.uptc.inmobiliaria.Util.Validaciones;
 

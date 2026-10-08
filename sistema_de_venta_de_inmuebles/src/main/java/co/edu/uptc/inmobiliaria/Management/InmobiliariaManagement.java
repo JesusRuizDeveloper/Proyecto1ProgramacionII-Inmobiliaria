@@ -35,6 +35,18 @@ public class InmobiliariaManagement {
     //<-----Logica de inmobiliaria----->
 
     //Crear inmobiliaria
+    public boolean crearInmobiliaria(){
+        inmobiliarias = daoJson.leerArchivo();
+
+        if(!validaciones.existeIdObjetoPorId(inmobiliarias, 1)){
+            Inmobiliaria i = new Inmobiliaria(1, "Inmobiliaria", "3229874567", "Centro");
+            inmobiliarias.add(i);
+            validaciones.cargarDatos(inmobiliarias);
+            return true;
+        }
+            return false;
+    }
+
     public boolean crearInmobiliaria(int id, String nombre, String telefono, String direccion){
         inmobiliarias = daoJson.leerArchivo();
 
@@ -62,10 +74,23 @@ public class InmobiliariaManagement {
 
     //Buscar inmobiliaria por id
     public ResultadoInmobiliaria buscarInmobiliariaPorId(int id){
+        inmobiliarias = daoJson.leerArchivo();
         ResultadoInmobiliaria inmoDTO = new ResultadoInmobiliaria(); 
         Inmobiliaria inmo = new Inmobiliaria();
 
         inmo = inmobiliarias.stream().filter(inmobiliaria -> inmobiliaria.getId() == id).findFirst().orElse(null);
+        inmoDTO.setInmobiliaria(inmo);
+        inmoDTO.setExisteInmobiliaria(inmo != null);
+        return inmoDTO;
+    }
+        
+    ////Buscar Inmobiliaria (UNICA)
+    public ResultadoInmobiliaria buscarInmobiliariaPorId(){
+        inmobiliarias = daoJson.leerArchivo();
+        ResultadoInmobiliaria inmoDTO = new ResultadoInmobiliaria(); 
+        Inmobiliaria inmo = new Inmobiliaria();
+
+        inmo = inmobiliarias.stream().filter(inmobiliaria -> inmobiliaria.getId() == 1).findFirst().orElse(null);
         inmoDTO.setInmobiliaria(inmo);
         inmoDTO.setExisteInmobiliaria(inmo != null);
         return inmoDTO;

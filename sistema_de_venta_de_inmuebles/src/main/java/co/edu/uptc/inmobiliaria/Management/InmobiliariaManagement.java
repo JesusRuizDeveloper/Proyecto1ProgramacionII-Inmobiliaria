@@ -96,11 +96,6 @@ public class InmobiliariaManagement {
         return inmoDTO;
     }
 
-    //Listar inmobiliarias
-    public List<Inmobiliaria> listarInmobiliarias(){
-        inmobiliarias = daoJson.leerArchivo();
-        return inmobiliarias;
-    }
 
 
     // <----Actualizar inmobiliarias---->
@@ -128,6 +123,12 @@ public class InmobiliariaManagement {
             }
             return false;
         }
+
+    //Listar inmobiliarias
+    public List<Inmobiliaria> listarInmobiliarias(){
+        inmobiliarias = daoJson.leerArchivo();
+        return inmobiliarias;
+    }
 
     //Modificar direccion
     public boolean modificarDireccionPorId(int id, String direccion){
@@ -243,41 +244,7 @@ public class InmobiliariaManagement {
 
     //<-----Logica de administrador----->
 
-    public boolean cambiarNombreAdministrador(int idInmo, int idAdmin, String nombre) {
-        inmobiliarias = daoJson.leerArchivo();
-        ResultadoAdministrador resultado = buscarAdministrador(idInmo, idAdmin);
 
-        if(resultado.getExisteAdministrador()) {
-            resultado.getAdministrador().setNombre(nombre);
-            daoJson.escribirArchivo(inmobiliarias);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean cambiarTelefonoAdministrador(int idInmo, int idAdmin, String telefono) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoAdministrador resultado = buscarAdministrador(idInmo, idAdmin);
-
-            if(resultado.getExisteAdministrador()) {
-                resultado.getAdministrador().setTelefono(telefono);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
-
-    public boolean cambiarClaveAdministrador(int idInmo, int idAdmin, String clave) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoAdministrador resultado = buscarAdministrador(idInmo, idAdmin);
-
-            if(resultado.getExisteAdministrador()) {
-                resultado.getAdministrador().setClave(clave);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
 
     //Agregar un administrador
 
@@ -331,41 +298,7 @@ public class InmobiliariaManagement {
 
     //<-----Logica de propietario----->
 
-    public boolean cambiarNombrePropietario(int idInmo, int idPropietario, String nombre) {
-        inmobiliarias = daoJson.leerArchivo();
-        ResultadoPropietario resultado = buscarPropietario(idInmo, idPropietario);
 
-        if(resultado.getExistePropietario()) {
-            resultado.getPropietario().setNombre(nombre);
-            daoJson.escribirArchivo(inmobiliarias);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean cambiarTelefonoPropietario(int idInmo, int idPropietario, String telefono) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoPropietario resultado = buscarPropietario(idInmo, idPropietario);
-
-            if(resultado.getExistePropietario()) {
-                resultado.getPropietario().setTelefono(telefono);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
-
-    public boolean cambiarClavePropietario(int idInmo, int idPropietario, String clave) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoPropietario resultado = buscarPropietario(idInmo, idPropietario);
-
-            if(resultado.getExistePropietario()) {
-                resultado.getPropietario().setClave(clave);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
 
     public boolean eliminarPropietario(int idInmo, int id) {
         inmobiliarias = daoJson.leerArchivo();
@@ -485,17 +418,7 @@ public class InmobiliariaManagement {
 
     //<-----Logica de cliente----->
 
-    public boolean cambiarNombreCliente(int idInmo, int idCliente, String nombre) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoCliente resultado = buscarCliente(idInmo, idCliente);
 
-            if(resultado.getExisteCliente()) {
-                resultado.getCliente().setNombre(nombre);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
 
     public boolean cambiarTelefonoCliente(int idInmo, int idCliente, String telefono) {
             inmobiliarias = daoJson.leerArchivo();
@@ -563,77 +486,7 @@ public List<Cliente> listarClientes(int idInmobiliaria) {
 
     //<-----Logica de inmueble----->
 
-    public boolean cambiarUbicacionInmueble(int idInmo, int idInmueble, String ubicacion) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoInmueble resultado = buscarInmueble(idInmo, idInmueble);
 
-            if(resultado.getExisteInmueble()) {
-                resultado.getInmueble().setUbicacion(ubicacion);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
-
-    public boolean cambiarDireccionInmueble(int idInmo, int idInmueble, String direccion) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoInmueble resultado = buscarInmueble(idInmo, idInmueble);
-
-            if(resultado.getExisteInmueble()) {
-                resultado.getInmueble().setDireccion(direccion);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
-
-    public boolean cambiarPrecioInmueble(int idInmo, int idInmueble, double precio) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoInmueble resultado = buscarInmueble(idInmo, idInmueble);
-
-            if(resultado.getExisteInmueble()) {
-                resultado.getInmueble().setPrecio(precio);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
-
-    public boolean cambiarTipoContratoInmueble(int idInmo, int idInmueble, TipoContrato tipoContrato) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoInmueble resultado = buscarInmueble(idInmo, idInmueble);
-
-            if(resultado.getExisteInmueble()) {
-                resultado.getInmueble().setTipoContrato(tipoContrato);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-        }
-
-    public boolean cambiarTipoDeInmueble(int idInmo, int idInmueble, TipoDeInmueble tipoDeInmueble) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoInmueble resultado = buscarInmueble(idInmo, idInmueble);
-
-            if(resultado.getExisteInmueble()) {
-                resultado.getInmueble().setTipoDeInmueble(tipoDeInmueble);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
-
-    public boolean cambiarDisponibilidadInmueble(int idInmo, int idInmueble, boolean estaDisponible) {
-            inmobiliarias = daoJson.leerArchivo();
-            ResultadoInmueble resultado = buscarInmueble(idInmo, idInmueble);
-
-            if(resultado.getExisteInmueble()) {
-                resultado.getInmueble().setEstaDisponible(estaDisponible);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
 
     public boolean eliminarInmueble(int idInmo, int id) {
         inmobiliarias = daoJson.leerArchivo();

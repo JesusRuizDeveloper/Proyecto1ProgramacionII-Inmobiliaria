@@ -30,7 +30,7 @@ public class InmobiliariaManagement {
     List<Inmobiliaria> inmobiliarias = new ArrayList<>();
 
     //Instancias de clases controladoras
-    ClienteManagement clienteManagement = new ClienteManagement();
+    //ClienteManagement clienteManagement = new ClienteManagement();
 
     //<-----Logica de inmobiliaria----->
 

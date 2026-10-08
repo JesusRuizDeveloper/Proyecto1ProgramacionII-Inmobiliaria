@@ -43,9 +43,6 @@ public class MenuAdministradorGUI extends JFrame {
         crearEventos();
     }
 
-    // ---------------------------------------------------------
-    // 1. Configuracion del JFrame
-    // ---------------------------------------------------------
     private void configurarVentana() {
         setTitle("Menú Administrador");
         setSize(380, 400);
@@ -55,9 +52,6 @@ public class MenuAdministradorGUI extends JFrame {
         setLayout(new BorderLayout());
     }
 
-    // ---------------------------------------------------------
-    // 2. Componentes
-    // ---------------------------------------------------------
     private void crearComponentes() {
         // Norte: titulo
         JLabel lblTitulo = new JLabel("MENÚ ADMINISTRADOR", SwingConstants.CENTER);
@@ -85,9 +79,6 @@ public class MenuAdministradorGUI extends JFrame {
         add(panelBotones, BorderLayout.CENTER);
     }
 
-    // ---------------------------------------------------------
-    // 3. Eventos: cada boton llama a un metodo pequeño
-    // ---------------------------------------------------------
     private void crearEventos() {
         btnAdministradores.addActionListener(e -> abrirAdministradores());
         btnPropietarios.addActionListener(e -> abrirPropietarios());
@@ -97,9 +88,6 @@ public class MenuAdministradorGUI extends JFrame {
         btnCerrarSesion.addActionListener(e -> cerrarSesion());
     }
 
-    // ---------------------------------------------------------
-    // 4. Abrir ventanas (se descomenta cada linea cuando la clase exista)
-    // ---------------------------------------------------------
     private void abrirAdministradores() {
         // new AdministradorGUI(management).setVisible(true);
         avisoPendiente("AdministradorGUI");
@@ -125,9 +113,7 @@ public class MenuAdministradorGUI extends JFrame {
         avisoPendiente("InmobiliariaGUI");
     }
 
-    // ---------------------------------------------------------
-    // 5. Cerrar sesion: cierra este menu y vuelve al login
-    // ---------------------------------------------------------
+    // cierra este menu y vuelve al login
     private void cerrarSesion() {
         int opcion = JOptionPane.showConfirmDialog(this,
                 "¿Desea cerrar la sesión?", "Cerrar sesión", JOptionPane.YES_NO_OPTION);

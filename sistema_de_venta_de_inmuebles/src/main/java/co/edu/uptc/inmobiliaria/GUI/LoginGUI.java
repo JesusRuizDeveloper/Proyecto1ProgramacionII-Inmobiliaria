@@ -181,9 +181,9 @@ public class LoginGUI extends JFrame {
         JOptionPane.showMessageDialog(this,
                 "Bienvenido " + persona.getNombre() + " (" + rol + ")");
 
-        // dispose(); // <- activar cuando ya se abran los menus
+        // dispose(); //activar cuando ya se abran los menus
     }
-
+    
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }

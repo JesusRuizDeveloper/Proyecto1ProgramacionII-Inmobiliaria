@@ -6,32 +6,24 @@ import java.sql.SQLException;
 
 public class ConexionMySQL {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria";
-
-    public static void main(String[] args) {
-        try (Connection conexion = obtenerConexion()) {
-            System.out.println("Conexión exitosa a MySQL");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
+    private static final String DEFAULT_URL = "jdbc:mysql://localhost:3306/inmobiliaria";
 
     public static Connection obtenerConexion() throws SQLException {
-        
+        String url = valorConfigurado("MYSQL_URL", DEFAULT_URL);
         String usuario = System.getenv("MYSQL_USER");
         String contrasena = System.getenv("MYSQL_PASSWORD");
 
-        if (usuario == null || contrasena == null) {
+        if (usuario == null || usuario.isBlank()
+                || contrasena == null || contrasena.isBlank()) {
             throw new IllegalStateException(
-                    "Debes configurar las variables MYSQL_USER y MYSQL_PASSWORD."
-            );
+                    "Configura MYSQL_USER y MYSQL_PASSWORD como variables de entorno.");
         }
 
-        return DriverManager.getConnection(URL, usuario, contrasena);
+        return DriverManager.getConnection(url, usuario, contrasena);
     }
-} 
-    
 
+    private static String valorConfigurado(String nombre, String valorPorDefecto) {
+        String valor = System.getenv(nombre);
+        return valor == null || valor.isBlank() ? valorPorDefecto : valor;
+    }
+}

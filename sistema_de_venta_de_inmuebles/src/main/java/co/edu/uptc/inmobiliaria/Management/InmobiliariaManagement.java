@@ -36,8 +36,12 @@ public class InmobiliariaManagement {
 
     //Crear inmobiliaria
     public boolean crearInmobiliaria(int id, String nombre, String telefono, String direccion) {
-    Inmobiliaria inmobiliaria = new Inmobiliaria(id, nombre, telefono, direccion);
-    return daoMysql.crearInmobiliaria(inmobiliaria);
+        Inmobiliaria inmobiliaria = new Inmobiliaria(id, nombre, telefono, direccion);
+        try {
+            return daoMysql.crearInmobiliaria(inmobiliaria);
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al crear la inmobiliaria en MySQL", e);
+        }
 }
 
 
@@ -69,8 +73,12 @@ public boolean eliminarInmobiliariaPorId(int id) {
 
     //Listar inmobiliarias
     public List<Inmobiliaria> listarInmobiliarias() {
-    inmobiliarias = daoMysql.listarInmobiliarias();
-    return inmobiliarias;
+        try {
+            inmobiliarias = daoMysql.listarInmobiliarias();
+            return inmobiliarias;
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al listar las inmobiliarias en MySQL", e);
+        }
     }
 
 

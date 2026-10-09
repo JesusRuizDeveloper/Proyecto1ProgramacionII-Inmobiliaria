@@ -74,7 +74,6 @@ public class InmobiliariaManagement {
 
     //Buscar inmobiliaria por id
     public ResultadoInmobiliaria buscarInmobiliariaPorId(int id){
-        inmobiliarias = daoJson.leerArchivo();
         ResultadoInmobiliaria inmoDTO = new ResultadoInmobiliaria(); 
         Inmobiliaria inmo = new Inmobiliaria();
 
@@ -86,7 +85,7 @@ public class InmobiliariaManagement {
         
     ////Buscar Inmobiliaria (UNICA)
     public ResultadoInmobiliaria buscarInmobiliariaPorId(){
-        inmobiliarias = daoJson.leerArchivo();
+        //inmobiliarias = daoJson.leerArchivo();
         ResultadoInmobiliaria inmoDTO = new ResultadoInmobiliaria(); 
         Inmobiliaria inmo = new Inmobiliaria();
 

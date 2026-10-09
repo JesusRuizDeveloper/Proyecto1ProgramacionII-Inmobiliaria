@@ -3,7 +3,7 @@ package co.edu.uptc.inmobiliaria.Management;
 import java.util.List;
 
 import co.edu.uptc.inmobiliaria.DAO.DaoJson.DaoInmobiliariaJson;
-import co.edu.uptc.inmobiliaria.DTO.ResultadoAdministrador;
+import co.edu.uptc.inmobiliaria.Model.Administrador;
 import co.edu.uptc.inmobiliaria.Model.Inmobiliaria;
 
 public class AdministradorManagement {
@@ -11,39 +11,49 @@ public class AdministradorManagement {
     List<Inmobiliaria> inmobiliarias = daoJson.leerArchivo();
     InmobiliariaManagement inmoManage = new InmobiliariaManagement();
 
+
     public boolean cambiarNombreAdministrador(int idInmo, int idAdmin, String nombre) {
         inmobiliarias = daoJson.leerArchivo();
-        ResultadoAdministrador resultado = inmoManage.buscarAdministrador(idInmo, idAdmin);
+        Inmobiliaria inmobiliaria = inmobiliarias.stream().filter(inmo -> inmo.getId() == idInmo).findFirst().orElse(null);
 
-        if(resultado.getExisteAdministrador()) {
-            resultado.getAdministrador().setNombre(nombre);
-            daoJson.escribirArchivo(inmobiliarias);
-            return true;
+        if (inmobiliaria == null) {
+            return false;
         }
-        return false;
+        Administrador administrador = inmobiliaria.getAdministradores().stream().filter(admin -> admin.getId() == idAdmin).findFirst().orElse(null);
+
+        if (administrador == null) {
+            return false;
+        }
+        administrador.setNombre(nombre);
+        daoJson.escribirArchivo(inmobiliarias);
+        return true;
     }
 
     public boolean cambiarTelefonoAdministrador(int idInmo, int idAdmin, String telefono) {
+        Inmobiliaria inmobiliaria = inmobiliarias.stream().filter(inmo -> inmo.getId() == idInmo).findFirst().orElse(null);
+        if (inmobiliaria == null) {
             inmobiliarias = daoJson.leerArchivo();
-            ResultadoAdministrador resultado = inmoManage.buscarAdministrador(idInmo, idAdmin);
-
-            if(resultado.getExisteAdministrador()) {
-                resultado.getAdministrador().setTelefono(telefono);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
+            inmobiliaria = inmobiliarias.stream().filter(inmo -> inmo.getId() == idInmo).findFirst().orElse(null);
+        }
+        if (inmobiliaria == null) return false;
+        Administrador administrador = inmobiliaria.getAdministradores().stream().filter(admin -> admin.getId() == idAdmin).findFirst().orElse(null);
+        if (administrador == null) return false;
+        administrador.setTelefono(telefono);
+        daoJson.escribirArchivo(inmobiliarias);
+        return true;
     }
 
     public boolean cambiarClaveAdministrador(int idInmo, int idAdmin, String clave) {
+        Inmobiliaria inmobiliaria = inmobiliarias.stream().filter(inmo -> inmo.getId() == idInmo).findFirst().orElse(null);
+        if (inmobiliaria == null) {
             inmobiliarias = daoJson.leerArchivo();
-            ResultadoAdministrador resultado = inmoManage.buscarAdministrador(idInmo, idAdmin);
-
-            if(resultado.getExisteAdministrador()) {
-                resultado.getAdministrador().setClave(clave);
-                daoJson.escribirArchivo(inmobiliarias);
-                return true;
-            }
-            return false;
-    }
+            inmobiliaria = inmobiliarias.stream().filter(inmo -> inmo.getId() == idInmo).findFirst().orElse(null);
+        }
+        if (inmobiliaria == null) return false;
+        Administrador administrador = inmobiliaria.getAdministradores().stream().filter(admin -> admin.getId() == idAdmin).findFirst().orElse(null);
+        if (administrador == null) return false;
+        administrador.setClave(clave);
+        daoJson.escribirArchivo(inmobiliarias);
+        return true;
+        }
 }

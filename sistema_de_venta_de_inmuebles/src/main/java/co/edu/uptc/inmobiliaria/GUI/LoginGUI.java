@@ -167,23 +167,19 @@ public class LoginGUI extends JFrame {
     private void abrirMenu(Persona persona, Rol rol) {
         switch (rol) {
         case ADMINISTRADOR:
-            // new MenuAdministradorGUI(management).setVisible(true);
+            new MenuAdministradorGUI(loginManagement, management).setVisible(true);
             break;
         case PROPIETARIO:
-            // new MenuPropietarioGUI(persona.getId(), management).setVisible(true);
+            new MenuPropietarioGUI(persona.getId(), loginManagement, management).setVisible(true);
             break;
         case CLIENTE:
-            // new MenuClienteGUI(management).setVisible(true);
+            new MenuClienteGUI(loginManagement, management).setVisible(true);
             break;
         }
 
-        // Temporal: se borra cuando existan los menus
-        JOptionPane.showMessageDialog(this,
-                "Bienvenido " + persona.getNombre() + " (" + rol + ")");
-
-        // dispose(); //activar cuando ya se abran los menus
+        dispose(); // cierra el login
     }
-    
+
     private void mostrarError(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }

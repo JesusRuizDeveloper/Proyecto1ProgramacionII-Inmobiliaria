@@ -89,28 +89,23 @@ public class MenuAdministradorGUI extends JFrame {
     }
 
     private void abrirAdministradores() {
-        // new AdministradorGUI(management).setVisible(true);
-        avisoPendiente("AdministradorGUI");
+        new AdministradorGUI(management).setVisible(true);
     }
 
     private void abrirPropietarios() {
-        // new PropietarioGUI(management).setVisible(true);
-        avisoPendiente("PropietarioGUI");
+        new PropietarioGUI(management).setVisible(true);
     }
 
     private void abrirClientes() {
-        // new ClienteGUI(management).setVisible(true);
-        avisoPendiente("ClienteGUI");
+        new ClienteGUI(management).setVisible(true);
     }
 
     private void abrirInmuebles() {
-        // new InmuebleGUI(management).setVisible(true);
-        avisoPendiente("InmuebleGUI");
+        new InmuebleGUI(management).setVisible(true);
     }
 
     private void abrirInmobiliaria() {
-        // new InmobiliariaGUI(management).setVisible(true);
-        avisoPendiente("InmobiliariaGUI");
+        new InmobiliariaGUI(management).setVisible(true);
     }
 
     // cierra este menu y vuelve al login
@@ -123,8 +118,4 @@ public class MenuAdministradorGUI extends JFrame {
         }
     }
 
-    // Temporal: se borra cuando existan todas las ventanas
-    private void avisoPendiente(String nombreVentana) {
-        JOptionPane.showMessageDialog(this, nombreVentana + " aún no está creada.");
-    }
 }

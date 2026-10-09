@@ -31,9 +31,9 @@ public class Main {
 
 
         // Lanzar la interfaz gráfica en el Event Dispatch Thread (EDT) de Swing
- /*       SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {
             LoginGUI loginGUI = new LoginGUI(loginManagement, inmo);
             loginGUI.setVisible(true);
         });
-    }*/ 
-}}
+    }
+}

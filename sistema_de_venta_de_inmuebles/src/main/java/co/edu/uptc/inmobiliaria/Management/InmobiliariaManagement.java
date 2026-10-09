@@ -35,65 +35,44 @@ public class InmobiliariaManagement {
     //<-----Logica de inmobiliaria----->
 
     //Crear inmobiliaria
-    public boolean crearInmobiliaria(){
-        inmobiliarias = daoJson.leerArchivo();
-
-        if(!validaciones.existeIdObjetoPorId(inmobiliarias, 1)){
-            Inmobiliaria i = new Inmobiliaria(1, "Inmobiliaria", "3229874567", "Centro");
-            inmobiliarias.add(i);
-            validaciones.cargarDatos(inmobiliarias);
-            return true;
-        }
-            return false;
+    public boolean crearInmobiliaria() {
+        return crearInmobiliaria(1, "Inmobiliaria", "3229874567", "Centro");
     }
 
-    public boolean crearInmobiliaria(int id, String nombre, String telefono, String direccion){
-        inmobiliarias = daoJson.leerArchivo();
-
-        if(!validaciones.existeIdObjetoPorId(inmobiliarias, id)){
-            Inmobiliaria i = new Inmobiliaria(id, nombre, telefono, direccion);
-            inmobiliarias.add(i);
-            validaciones.cargarDatos(inmobiliarias);
-            return true;
+    public boolean crearInmobiliaria(int id, String nombre, String telefono, String direccion) {
+        Inmobiliaria inmobiliaria = new Inmobiliaria(id, nombre, telefono, direccion);
+        try {
+            return daoMysql.crearInmobiliaria(inmobiliaria);
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al crear la inmobiliaria en MySQL", e);
         }
-            return false;
     }
-
 
     //Eliminar inmobiliaria
-    public boolean eliminarInmobiliariaPorId(int id){
-        inmobiliarias = daoJson.leerArchivo();
-
-        if(validaciones.existeIdObjetoPorId(inmobiliarias, id)){
-            inmobiliarias.removeIf(inmobiliaria -> inmobiliaria.getId() == id);
-            validaciones.cargarDatos(inmobiliarias);
-            return true;
+    public boolean eliminarInmobiliariaPorId(int id) {
+        try {
+            return daoMysql.eliminarInmobiliariaPorId(id);
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al eliminar la inmobiliaria en MySQL", e);
         }
-        return false;
     }
 
     //Buscar inmobiliaria por id
-    public ResultadoInmobiliaria buscarInmobiliariaPorId(int id){
-        inmobiliarias = daoJson.leerArchivo();
-        ResultadoInmobiliaria inmoDTO = new ResultadoInmobiliaria(); 
-        Inmobiliaria inmo = new Inmobiliaria();
-
-        inmo = inmobiliarias.stream().filter(inmobiliaria -> inmobiliaria.getId() == id).findFirst().orElse(null);
-        inmoDTO.setInmobiliaria(inmo);
-        inmoDTO.setExisteInmobiliaria(inmo != null);
-        return inmoDTO;
+    public ResultadoInmobiliaria buscarInmobiliariaPorId(int id) {
+        try {
+            Inmobiliaria inmobiliaria = daoMysql.buscarInmobiliariaPorId(id);
+            ResultadoInmobiliaria resultado = new ResultadoInmobiliaria();
+            resultado.setInmobiliaria(inmobiliaria);
+            resultado.setExisteInmobiliaria(inmobiliaria != null);
+            return resultado;
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al buscar la inmobiliaria en MySQL", e);
+        }
     }
-        
-    ////Buscar Inmobiliaria (UNICA)
-    public ResultadoInmobiliaria buscarInmobiliariaPorId(){
-        inmobiliarias = daoJson.leerArchivo();
-        ResultadoInmobiliaria inmoDTO = new ResultadoInmobiliaria(); 
-        Inmobiliaria inmo = new Inmobiliaria();
 
-        inmo = inmobiliarias.stream().filter(inmobiliaria -> inmobiliaria.getId() == 1).findFirst().orElse(null);
-        inmoDTO.setInmobiliaria(inmo);
-        inmoDTO.setExisteInmobiliaria(inmo != null);
-        return inmoDTO;
+    ////Buscar Inmobiliaria (UNICA)
+    public ResultadoInmobiliaria buscarInmobiliariaPorId() {
+        return buscarInmobiliariaPorId(1);
     }
 
 
@@ -101,46 +80,41 @@ public class InmobiliariaManagement {
     // <----Actualizar inmobiliarias---->
 
     //Modificar nombre
-    public boolean modificarNombrePorId(int id, String nombreNuevo){
-        inmobiliarias = daoJson.leerArchivo();
-
-        if(validaciones.existeIdObjetoPorId(inmobiliarias, id)){
-            inmobiliarias.stream().filter(inmobiliaria -> inmobiliaria.getId() == id).findFirst().orElse(null).setNombre(nombreNuevo);
-            validaciones.cargarDatos(inmobiliarias);
-            return true;
-            }
-            return false;
+    public boolean modificarNombrePorId(int id, String nombreNuevo) {
+        try {
+            return daoMysql.modificarNombrePorId(id, nombreNuevo);
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al modificar el nombre en MySQL", e);
         }
+    }
 
     //Modificar telefono
-    public boolean modificarTelefonoPorId(int id, String telefono){
-        inmobiliarias = daoJson.leerArchivo();
-
-        if(validaciones.existeIdObjetoPorId(inmobiliarias, id)){
-            inmobiliarias.stream().filter(inmobiliaria -> inmobiliaria.getId() == id).findFirst().orElse(null).setTelefono(telefono);
-            validaciones.cargarDatos(inmobiliarias);
-            return true;
-            }
-            return false;
+    public boolean modificarTelefonoPorId(int id, String telefono) {
+        try {
+            return daoMysql.modificarTelefonoPorId(id, telefono);
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al modificar el teléfono en MySQL", e);
         }
+    }
 
     //Listar inmobiliarias
-    public List<Inmobiliaria> listarInmobiliarias(){
-        inmobiliarias = daoJson.leerArchivo();
-        return inmobiliarias;
+    public List<Inmobiliaria> listarInmobiliarias() {
+        try {
+            inmobiliarias = daoMysql.listarInmobiliarias();
+            return inmobiliarias;
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al listar inmobiliarias en MySQL", e);
+        }
     }
 
     //Modificar direccion
-    public boolean modificarDireccionPorId(int id, String direccion){
-        inmobiliarias = daoJson.leerArchivo();
-
-        if(validaciones.existeIdObjetoPorId(inmobiliarias, id)){
-            inmobiliarias.stream().filter(inmobiliaria -> inmobiliaria.getId() == id).findFirst().orElse(null).setDireccion(direccion);
-            validaciones.cargarDatos(inmobiliarias);
-            return true;
-            }
-            return false;
+    public boolean modificarDireccionPorId(int id, String direccion) {
+        try {
+            return daoMysql.modificarDireccionPorId(id, direccion);
+        } catch (java.sql.SQLException e) {
+            throw new IllegalStateException("Error al modificar la dirección en MySQL", e);
         }
+    }
 
 
 

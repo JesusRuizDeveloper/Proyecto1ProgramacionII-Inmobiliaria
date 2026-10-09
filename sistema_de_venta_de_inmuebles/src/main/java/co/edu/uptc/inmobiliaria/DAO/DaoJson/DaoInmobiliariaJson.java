@@ -17,17 +17,21 @@ public class DaoInmobiliariaJson {
 
     private Gson gson = new Gson();
     private String archivo = "src/main/resources/inmobiliaria.json";
-    
+
     public DaoInmobiliariaJson(){
 
     }
 
     public List<Inmobiliaria> leerArchivo(){
         try (Reader reader = new FileReader(archivo)) {
+
             Type tipoLista = new TypeToken<List<Inmobiliaria>>() {}.getType();
             List<Inmobiliaria> lista = gson.fromJson(reader, tipoLista);
+
             return lista != null ? lista : new ArrayList<>();
+
         } catch (IOException e) {
+
             return new ArrayList<>();
         }
     }

@@ -1,16 +1,25 @@
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/DAO/DaoJson/DaoInmobiliariaJson.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Run/Main.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Management/ClienteManagement.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Management/InmobialiariaManagement.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Model/Propietario.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Enums/TipoDeInmueble.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Management/InmuebleManagement.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Model/Inmobiliaria.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Model/Administrador.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Util/Validaciones.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Model/Cliente.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Management/PropietarioManagement.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Management/AdministradorManagement.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Enums/TipoContrato.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/DAO/DaoMysql/DaoInmobiliariaMysql.java
-/home/jesus/Escritorio/Proyectos_Universidad/4to Semestre/Programacion_II/Proyecto y trabajos de clase/Proyecto_1_progra_2/sistema_de_venta_de_inmuebles/src/main/java/co/edu/uptc/inmobiliaria/Model/Inmueble.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\DAO\DaoJson\DaoInmobiliariaJson.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\DAO\DaoMysql\DaoInmobiliariaMysql.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\DTO\ResultadoAdministrador.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\DTO\ResultadoCliente.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\DTO\ResultadoInmobiliaria.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\DTO\ResultadoInmueble.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\DTO\ResultadoPropietario.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Enums\Rol.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Enums\TipoContrato.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Enums\TipoDeInmueble.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\GUI\InmobiliariaGUI.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Interfaces\General.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Management\AdministradorManagement.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Management\ClienteManagement.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Management\InmobiliariaManagement.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Management\InmuebleManagement.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Management\PropietarioManagement.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Model\Administrador.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Model\Cliente.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Model\Inmobiliaria.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Model\Inmueble.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Model\Persona.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Model\Propietario.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Run\Main.java
+C:\Users\David\Desktop\progra2\inmoviliaria\Proyecto1ProgramacionII-Inmobiliaria\sistema_de_venta_de_inmuebles\src\main\java\co\edu\uptc\inmobiliaria\Util\Validaciones.java

@@ -25,6 +25,10 @@ public class LoginManagement {
             return null;
         }
 
+        // Recarga los datos del JSON: los metodos buscar* trabajan sobre la lista
+        // en memoria, que esta vacia hasta que alguien lee el archivo
+        inmoManage.listarInmobiliarias();
+
         switch (rol) {
         case ADMINISTRADOR:
             ResultadoAdministrador resAdmin = inmoManage.buscarAdministrador(ID_INMOBILIARIA, id);

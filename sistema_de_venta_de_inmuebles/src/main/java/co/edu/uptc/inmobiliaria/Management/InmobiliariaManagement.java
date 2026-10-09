@@ -95,8 +95,6 @@ public class InmobiliariaManagement {
         return inmoDTO;
     }
 
-
-
     // <----Actualizar inmobiliarias---->
 
     //Modificar nombre
